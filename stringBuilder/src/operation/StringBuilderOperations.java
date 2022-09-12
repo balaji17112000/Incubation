@@ -57,10 +57,11 @@ public class StringBuilderOperations {
 		return strBr.replace(start,end,str);
 	}
 	public int findFirstChar(StringBuilder strBr,String str) throws KeyException{
+		Check.nullCheck(strBr);
 		return strBr.indexOf(str);
 	}
 	public int findLastChar(StringBuilder strBr,String str) throws KeyException{
+		Check.nullCheck(strBr);
 		return strBr.lastIndexOf(str);
 	}
 }
-
