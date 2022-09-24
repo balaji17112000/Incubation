@@ -70,7 +70,7 @@ public class TestRunner {
 public static void main(String[] args) {
 	String runAgain;
 	do{
-		System.out.println("Enter between 1 - 20 to execute the String Operation");
+		System.out.println("Enter between 1 - 20 to execute the ArrayList Operation");
 		try{
 			ArrayListOperations obj = new ArrayListOperations();
 			TestRunner obj2 = new TestRunner();
