@@ -6,27 +6,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class FileRunner {
+	private static final Logger log = Logger.getLogger(DateTimeRunner.class.getName());
 	static Scanner sc = new Scanner(System.in);
 	String getString(){
-		System.out.println("Enter string:");
+		log.info("Enter string:");
 		String str = sc.nextLine();
 		return str;
 	}
 	int getInt(){
 		int num=0;
-		System.out.println("Enter number of key -> value pairs: ");
+		log.info("Enter number of key -> value pairs: ");
 		try{
 		 num= sc.nextInt();
 		 }catch(Exception e){
-		 System.out.println("Invalid input");
+		 log.info("Invalid input");
 		 }
 		 sc.nextLine();
 		return num;
 	}
 	String getStringLine(){
-		System.out.println("Enter string:");
+		log.info("Enter string:");
 		String str = sc.nextLine();
 		return str+"\n";
 	}
@@ -39,7 +41,7 @@ public class FileRunner {
 	public static void main(String[] args) throws IOException {
 		String runAgain;
 		do{
-			System.out.println("Enter between 1 - 10 to execute the FIle Operation");
+			log.info("Enter between 1 - 10 to execute the FIle Operation");
 			try {
 				FileRunner test = new FileRunner();
 				Properties prop = new Properties();
@@ -65,7 +67,7 @@ public class FileRunner {
 						val++;
 					}
 					prop.store(file2,"Values added");
-					System.out.println("FIle updated");
+					log.info("FIle updated");
 					break;
 				case 3:
 					//3. Read value from file
@@ -78,7 +80,7 @@ public class FileRunner {
 					 File file = new File("/home/inc12/myDir");
 					if (!file.exists()) {
 			            if (file.mkdirs()) {
-			                System.out.println("new folders created!");
+			                log.info("new folders created!");
 			            }
 			        }
 			        FileOutputStream file3 = new FileOutputStream(new File("/home/inc12/myDir/sample.txt"));
@@ -97,7 +99,7 @@ public class FileRunner {
 					val++;
 					}
 					prop2.store(file4,"Values added");
-					System.out.println("FIle updated");
+					log.info("FIle updated");
 					//3. Read value from file
 					FileInputStream reader2 = new FileInputStream(new File("/home/inc12/myDir/myprops.txt")); // create new file if not exist
 					prop2.load(reader2);
@@ -105,15 +107,15 @@ public class FileRunner {
 					break;
 				case 5:
 					Tester testObj =new Tester("Balaji");
-					System.out.println(testObj);
+					log.info(""+testObj);
 					break;
 				case 6:
 					OpertationPojo pojoObj = new OpertationPojo("Balaji",21);
-					System.out.println(pojoObj);
+					log.info(""+pojoObj);
 					break;
 				case 7:
 					OpertationPojo pojoObj2 = new OpertationPojo();
-					System.out.println(pojoObj2);// default will be printed (null and 0)
+					log.info(""+pojoObj2);// default will be printed (null and 0)
 					break;
 				case 8:
 					Rainbow colour1 =Rainbow.VIOLET;
@@ -123,28 +125,28 @@ public class FileRunner {
 					Rainbow colour5 =Rainbow.YELLOW;
 					Rainbow colour6 =Rainbow.ORANGE;
 					Rainbow colour7 =Rainbow.RED;
-					System.out.println(colour1+" and its code "+colour1.code);
-					System.out.println(colour2+" and its code "+colour2.code);
-					System.out.println(colour3+" and its code "+colour3.code);
-					System.out.println(colour4+" and its code "+colour4.code);
-					System.out.println(colour5+" and its code "+colour5.code);
-					System.out.println(colour6+" and its code "+colour6.code);
-					System.out.println(colour7+" and its code "+colour7.code);
-					System.out.println(java.util.Arrays.asList(Rainbow.values()));
+					log.info(colour1+" and its code "+colour1.code);
+					log.info(colour2+" and its code "+colour2.code);
+					log.info(colour3+" and its code "+colour3.code);
+					log.info(colour4+" and its code "+colour4.code);
+					log.info(colour5+" and its code "+colour5.code);
+					log.info(colour6+" and its code "+colour6.code);
+					log.info(colour7+" and its code "+colour7.code);
+					log.info(""+java.util.Arrays.asList(Rainbow.values()));
 					break;
 				case 9:
-					System.out.println("Singleton class object(Only one) is created");
+					log.info("Singleton class object(Only one) is created");
 					Singleton x = Singleton.getInstance();
 //					Singleton y = Singleton.getInstance();
-					System.out.println(x);
+					log.info(""+x);
 					break;
 				default:
-					System.out.println("value must be 1 - 9");
+					log.info("value must be 1 - 9");
 				}
 			}catch(Exception e) {
-				System.out.println(e);
+				log.info(""+e);
 			}
-			System.out.println("do you want to exit Y/N");
+			log.info("do you want to exit Y/N");
 			runAgain = sc.next();
 		}while(runAgain.equalsIgnoreCase("n"));
 		sc.close();

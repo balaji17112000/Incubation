@@ -30,7 +30,7 @@ public class Db_operations {
 		try {
 			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db, "root","Root@123");
 		//	connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db+"?allowPublicKeyRetrieval=true&useSSL=false", "root","Root@123");
-			System.out.println("DB connected");
+		//	System.out.println("DB connected");
 		} catch (SQLException e) {
 			throw new KeyException("Cannot able to connect to DB "+db+"\n"+e);
 		}
@@ -41,13 +41,13 @@ public class Db_operations {
 			String query = "CREATE TABLE "+tablename+"(EMPLOYEE_ID INTEGER NOT NULL,"+"NAME VARCHAR(30),"+"MOBILE BIGINT,"+"EMAIL VARCHAR(40),"+"DEPARTMENT VARCHAR(20),"+" PRIMARY KEY (EMPLOYEE_ID))";
 			stmt = connect.createStatement();
 			stmt.execute(query);
-			System.out.println("query executed");
+	//		System.out.println("query executed");
 		} catch (SQLException e) {
 			throw new KeyException("Cannot create table"+e.getMessage());
 		}
 	}
 	public void insertTable(Object arr[]) throws KeyException{
-		System.out.println(Arrays.toString(arr));
+	//	System.out.println(Arrays.toString(arr));
 		try {
 				String query ="INSERT INTO EMPLOYEE values(?,?,?,?,?)";
 				PreparedStatement preparedStmt = getPreStatement(query);
@@ -60,7 +60,6 @@ public class Db_operations {
 				preparedStmt.execute();
 				//System.out.println("##########Query: "+query);
 				//stmt.execute(query);
-			  System.out.println("query executed");
 		} catch (SQLException e) {
 			throw new KeyException("Cannot able to insert values"+e);
 		}
