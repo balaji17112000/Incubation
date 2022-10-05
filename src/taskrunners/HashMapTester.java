@@ -31,7 +31,7 @@ public class HashMapTester {
 public static void main(String[] args) {
 	String runAgain;
 	do{
-		System.out.println("Enter between 1 - 20 to execute the String Operation");
+		System.out.println("Enter between 1 - 20 to execute the HashMap Operation");
 		try{
 			HashMapTester tester = new HashMapTester();
 			HashMapOperations operator = new HashMapOperations();

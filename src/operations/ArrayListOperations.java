@@ -8,16 +8,17 @@ import java.util.function.Predicate;
 import util.Check;
 import util.KeyException;
 
-public class ArrayListOperations<T> {
-	public ArrayList<T> getArrList() {
-		ArrayList<T> arrList= new ArrayList<T>();
+public class ArrayListOperations {
+	
+	public  ArrayList<Object> getArrList(){
+		ArrayList<Object> arrList= new ArrayList<Object>();
 		return arrList;
 	}
-	public int getLength( List<T> arrList) throws KeyException{
+	public int getLength( List<Object> arrList) throws KeyException{
 		Check.nullCheck(arrList);
 		return arrList.size();
 	}
-	public List<T> appendStrings(List<T> arrList ,T... string) throws KeyException{
+	public List<Object> appendStrings(List arrList ,Object... string) throws KeyException{
 		Check.nullCheck(arrList);
 		Check.nullCheck(string);
 		int length=string.length;
@@ -26,23 +27,23 @@ public class ArrayListOperations<T> {
 		}
 		return arrList;
 	}
-	public void appendString(List<T> arrList ,T str, int index) throws KeyException{
+	public  void appendString(List arrList ,Object str, int index) throws KeyException{
 		Check.nullCheck(str);
 		arrList.add(index, str);
 	}
-	public int findIndex(List<T> arrList ,String str) throws KeyException{
+	public int findIndex(List<Object> arrList ,String str) throws KeyException{
 		Check.nullCheck(arrList);
 		Check.nullCheck(str);
 		return arrList.indexOf(str);
 	}
-	public Object findString(List<T> arrList ,int index) throws KeyException{
+	public Object findString(List<Object> arrList ,int index) throws KeyException{
 		Check.nullCheck(arrList);
 		if (getLength(arrList)<=index) {
 			throw new KeyException("Given Index value is greater than the List size");
 		}
 		return arrList.get(index);
 	}
-	public int[] findDuplicate(List<T> arrList) throws KeyException{
+	public  int[] findDuplicate(List<Object> arrList) throws KeyException{
 		Check.nullCheck(arrList);
 		String word;
 		int n=getLength(arrList); 
@@ -57,60 +58,60 @@ public class ArrayListOperations<T> {
 			}
 		return intarr;
 	}
-	public Iterator<T> printArray(List<T> arrList ) throws KeyException{
+	public Iterator<Object> printArray(List<Object> arrList ) throws KeyException{
 		Check.nullCheck(arrList);
 		return arrList.iterator();
 	}
-	public List<T> subList(List<T> arrList ,int startIndex, int endIndex) throws KeyException{
+	public List<Object> subList(List<Object> arrList ,int startIndex, int endIndex) throws KeyException{
 		Check.nullCheck(arrList);
 		if (endIndex >=getLength(arrList)||startIndex<0 || startIndex>endIndex ) {
 			throw new KeyException("Given Index value is greater than the List size");
 		}
 		return arrList.subList(startIndex,endIndex);
 	}
-	public ArrayList<T> mergeList(List<T> arrList1 ,List<T> arrList2 ) throws KeyException{
+	public ArrayList<Object> mergeList(List<Object> arrList1 ,List<Object> arrList2 ) throws KeyException{
 		Check.nullCheck(arrList1);
-		ArrayList<T> arrList= new ArrayList<T>();
+		ArrayList<Object> arrList= new ArrayList<Object>();
 		arrList.addAll(arrList1);
 		arrList.addAll(arrList2);
 		return arrList;
 	}
-	public void deleteElement(List<T> arrList, double value ) throws KeyException{
+	public <T> void deleteElement(List<T> arrList, double value ) throws KeyException{
 		Check.nullCheck(arrList);
 		arrList.remove(value);
 	}
-	public void deleteElementAtIndex(List<T> arrList, int index ) throws KeyException{
+	public void deleteElementAtIndex(List<Object> arrList, int index ) throws KeyException{
 		Check.nullCheck(arrList);
 		if (index>getLength(arrList)) {
 			throw new KeyException("Given Index value is greater than the List size");
 		}
 		arrList.remove(index);
 	}
-	public void deleteRange(List<T> arrList, int startIndex ,int endIndex) throws KeyException{
+	public void deleteRange(List<Object> arrList, int startIndex ,int endIndex) throws KeyException{
 		Check.nullCheck(arrList);
 		if (startIndex>endIndex || startIndex<0 || endIndex>getLength(arrList)) {
 			throw new KeyException("Given Index value is greater than the List size");
 		}
 		arrList.removeAll(arrList.subList(startIndex,endIndex));
 	}
-	public void removePresent(List<T> arrList ,List<T> subList) throws KeyException{
+	public void removePresent(List<Object> arrList ,List<Object> subList) throws KeyException{
 		Check.nullCheck(arrList);
 		if (!arrList.containsAll(subList) ) {
 			throw new KeyException("Given Sublist is not in List");
 		}
 		arrList.removeAll(subList);
 	}
-	public void removeType(List<T> arrList ) throws KeyException{
+	public void removeType(List<Object> arrList ) throws KeyException{
 		Check.nullCheck(arrList);
 		arrList.removeAll(arrList);
 	}
-	public boolean checkContain(List<T> arrList, String str ) throws KeyException{
+	public  boolean checkContain(List<Object> arrList, String str ) throws KeyException{
 		Check.nullCheck(arrList);
 		return arrList.contains(str);
 	}
-	public void removeNotPresent(ArrayList<T> arrList ,List<T> subList) throws KeyException{
+	public  void removeNotPresent(ArrayList<Object> arrList ,List<Object> subList) throws KeyException{
 		Check.nullCheck(arrList);
-		List<T> temp = new ArrayList<T>();
+		List<Object> temp = new ArrayList<Object>();
 		temp = (List) arrList.clone();
 		if (!arrList.containsAll(subList) ) {
 			throw new KeyException("Given Sublist is not in List");

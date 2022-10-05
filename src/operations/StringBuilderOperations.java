@@ -5,37 +5,59 @@ import util.Check;
 
 public class StringBuilderOperations {
 	public int getLength( StringBuilder strBld) throws KeyException{
+		Check.nullCheck(strBld); 
 		return strBld.length();
 	}
 	public StringBuilder appendStrings(String str[],String symbol) throws KeyException{
-		Check.nullCheck(str);
+		Check.nullCheck(str); // done
+		Check.nullCheck(symbol);
 		StringBuilder strBr= new StringBuilder();
 		int length=str.length;
 		for(int i=0; i<length;i++ ) {
 			 strBr.append(str[i]);
 			 strBr.append(symbol);
 		}
+		int len=getLength(strBr);
 		if(!symbol.isEmpty()) {
-			strBr = strBr.deleteCharAt(getLength(strBr)-symbol.length());
+			strBr = strBr.delete(len-symbol.length(),len); // last n char delete done
 		}
 		return strBr;
 	}
-	public StringBuilder insertStrings(String str[],String newStr) throws KeyException{
+	public StringBuilder insertStrings(String str[],String newStr, int index) throws KeyException{ // get index to insert :low priority done done
+		Check.nullCheck(str);
+		Check.nullCheck(newStr);
+		StringBuilder strBr = appendStrings(str," ");
+		int n = 0,temp = 0;
+		for(int i=0;i<index;i++) {
+			n =strBr.indexOf(" ",temp);
+			temp=n+1;
+		}
+		if(index!=0) {
+			strBr.insert(n+1,newStr);
+			return strBr.insert(n+newStr.length()+1," ");
+		}
+		strBr.insert(n,newStr);
+		return strBr.insert(n+newStr.length()," ");
+	}
+	public StringBuilder deleteString(String str[],int index) throws KeyException{ //index to delete? done done
 		Check.nullCheck(str);
 		StringBuilder strBr = appendStrings(str," ");
-		strBr.insert(str[0].length(),newStr );
-		return strBr.insert(str[0].length()," ");
+		int n = 0,temp = 0;
+		for(int i=0;i<index;i++) {
+			n =strBr.indexOf(" ",temp);
+			temp=n+1;
+		}
+			if (index==str.length) {
+				return strBr.delete(n,n+str[index].length()); 
+		}
+		return strBr.delete(n,n+str[index].length()+1); 
 	}
-	public StringBuilder deleteString(String str[]) throws KeyException{
-		Check.nullCheck(str);
-		StringBuilder strBr = appendStrings(str," ");
-		return strBr.delete(0,str[0].length());
-	}
-	public StringBuilder replaceString(StringBuilder strBr,String symbol) throws KeyException{
-		int n = strBr.length();
+	public StringBuilder replaceString(StringBuilder strBr,char symbol,char newSymbol) throws KeyException{ //which symbol to replace? done
+		//null check done
+		int n = getLength(strBr);
 		for (int index = 0; index < n; index++) {
-		    if (strBr.charAt(index) == ' ') {
-		        strBr.setCharAt(index, '-');
+		    if (strBr.charAt(index) == symbol) {
+		        strBr.setCharAt(index, newSymbol);
 		    }
 		}
 		return strBr;
@@ -48,13 +70,13 @@ public class StringBuilderOperations {
 		if(start<0 || end<0 || end>getLength(strBr) || start>getLength(strBr)){
 			throw new KeyException("Invalid Index");
 		}
-		return strBr.delete(start,end);
+		return strBr.delete(start,end+1);
 	}
 	public StringBuilder replaceChar(StringBuilder strBr,int start, int end,String str) throws KeyException{
 		if(start<0 || end<0 || end>getLength(strBr) || start>getLength(strBr)){
 			throw new KeyException("Invalid Index");
 		}
-		return strBr.replace(start,end,str);
+		return strBr.replace(start,end+1,str);
 	}
 	public int findFirstChar(StringBuilder strBr,String str) throws KeyException{
 		Check.nullCheck(strBr);
@@ -65,3 +87,4 @@ public class StringBuilderOperations {
 		return strBr.lastIndexOf(str);
 	}
 }
+//	int n=strBr.indexOf(str[index]);

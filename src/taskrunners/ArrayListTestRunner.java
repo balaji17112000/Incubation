@@ -1,13 +1,19 @@
 package taskrunners;
 
-import java.util.*;
+
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
 import operations.ArrayListOperations;
 import util.KeyException;
 
-public class TestRunner {
-	static Scanner sc = new Scanner(System.in);
-	String[] getStrArr(int n){
+public class ArrayListTestRunner {
+	private static Scanner sc = new Scanner(System.in);
+	private String[] getStrArr(int n){
 		String str[]= new String[n];
 		System.out.println("Enter string to append: ");
 		for(int i=0;i<n;i++) {
@@ -15,7 +21,7 @@ public class TestRunner {
 		}
 		return str;
 	}
-	Integer[] getIntArr(int n){
+	private Integer[] getIntArr(int n){
 		Integer intArr[]= new Integer[n];
 		System.out.println("Enter value to append: ");
 		for(int i=0;i<n;i++) {
@@ -23,7 +29,7 @@ public class TestRunner {
 		}
 		return intArr;
 	}
-	Long[] getLongArr(int n){
+	private Long[] getLongArr(int n){
 		Long longArr[]= new Long[n];
 		System.out.println("Enter value to append: ");
 		for(int i=0;i<n;i++) {
@@ -31,7 +37,7 @@ public class TestRunner {
 		}
 		return longArr;
 	}
-	Double[] getDoubleArr(int n){
+	private Double[] getDoubleArr(int n){
 		Double dblArr[]= new Double[n];
 		System.out.println("Enter value to append: ");
 		for(int i=0;i<n;i++) {
@@ -39,7 +45,7 @@ public class TestRunner {
 		}
 		return dblArr;
 	}
-	Object[] getObjArr(int n){
+	private Object[] getObjArr(int n){
 		Object obj= new Object();
 		Object objArr[]= new Object[n];
 		for(int i=0;i<n;i++) {
@@ -47,35 +53,35 @@ public class TestRunner {
 		}
 		return objArr;
 	}
-	String getString(){
+	private String getString(){
 		System.out.println("Enter string:");
 		String str = sc.nextLine();
 		return str;
 	}
-	 char getChar(){
+	private char getChar(){
 		System.out.println("Enter a character: ");
 		return sc.next().charAt(0);
 	}
-	int getInt(){
+	private int getInt(){
 		int num=0;
 		System.out.println("Enter integer: ");
 		try{
 		 num= sc.nextInt();
-		 }catch(Exception e){
+		 }catch(InputMismatchException e){
 		 System.out.println("Invalid input");
 		 }
 		 sc.nextLine();
 		return num;
 	}
 public static void main(String[] args) {
-	String runAgain;
+	String runAgain="Yes";
 	do{
-		System.out.println("Enter between 1 - 20 to execute the ArrayList Operation");
+		System.out.println("Enter between 1 - 20 to execute the ArrayList Operation. 21 to Exit");
 		try{
 			ArrayListOperations obj = new ArrayListOperations();
-			TestRunner obj2 = new TestRunner();
-			List<ArrayListOperations> arrList= obj.getArrList();
-			List<ArrayListOperations> arrList1= obj.getArrList();
+			ArrayListTestRunner obj2 = new ArrayListTestRunner();
+			List<Object> arrList= obj.getArrList();
+			List<Object> arrList1= obj.getArrList();
 			int questionNumber= obj2.getInt();
 			switch(questionNumber){
 			case 1:
@@ -208,16 +214,18 @@ public static void main(String[] args) {
 				System.out.println(obj.checkContain(arrList,obj2.getString()));
 				System.out.println(arrList+" and lenght is "+obj.getLength(arrList));
 				break;
+			case 21:
+				System.out.println("terminated");
+				runAgain ="No";
+				break;
 			default:
-				System.out.println("Enter number b/w 1-10 only");
+				System.out.println("Enter number b/w 1-21 only");
 				break;
 			}
 		}catch(KeyException e){
 				System.out.println("oops!! " +e.getMessage());
 		}
-		System.out.println("do you want to exit Y/N");
-		runAgain = sc.next();
-	}while(runAgain.equalsIgnoreCase("n"));
+	}while(runAgain.equalsIgnoreCase("Yes"));
 	sc.close();
 }
 }
