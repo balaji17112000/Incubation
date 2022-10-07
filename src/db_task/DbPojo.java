@@ -1,5 +1,7 @@
 package db_task;
 
+import java.util.Map;
+
 import util.KeyException;
 
 public class DbPojo {
@@ -13,10 +15,10 @@ public class DbPojo {
 		dbObj.updateDetails(id, colName, value);
 	}
 	
-	public void getFirstNDetails(int n) throws KeyException {
-		dbObj.GetNDetails(n);
+	public Map getFirstNDetails(int n) throws KeyException {
+		return dbObj.GetNDetails(n);
 	}
-	public void getFirstNDetailsOrder(int n,String name) throws KeyException {
-		dbObj.GetNDetails(n,name);
+	public Map getFirstNDetailsOrder(int n,String name) throws KeyException {
+		return dbObj.GetNDetails(n,name);
 	}
 }

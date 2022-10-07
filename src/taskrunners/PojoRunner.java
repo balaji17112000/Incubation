@@ -8,13 +8,14 @@ import java.util.logging.Logger;
 import file_system.DateTimeRunner;
 
 
+
 public class PojoRunner {
 	private static final Logger log = Logger.getLogger(DateTimeRunner.class.getName());
 	public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		Class<?> pojo = Class.forName("file_system.OpertationPojo");
 		// default constructor
 		Object objectConstructor =pojo.newInstance();
-		Constructor<?>[] cr= pojo.getConstructors();
+		//Constructor<?>[] cr= pojo.getConstructors();
 		log.info(""+objectConstructor); 
 		// 2 parameter constructor
 		Class<?>[] type = { String.class,Integer.class }; // set type of constructor parameter 
@@ -24,9 +25,12 @@ public class PojoRunner {
 		//3 Invoking methods by setting method (with no parameters)
 		Method m1 = pojo.getMethod("getterString");
 		Method m2 = pojo.getMethod("getterNumber");
+		System.out.println(objectConstructor2);
 		Object  objectMethod1= m1.invoke(objectConstructor2);
 		Object  objectMethod2= m2.invoke(objectConstructor2);
 		log.info(objectMethod1+"\n"+objectMethod2);
+		
+		
 	}
 }
 //file_system.OpertationPojo pojoObj = new file_system.OpertationPojo();

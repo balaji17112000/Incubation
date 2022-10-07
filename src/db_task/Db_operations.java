@@ -110,15 +110,13 @@ public class Db_operations {
 		try {
 			ResultSetMetaData rsmd = (ResultSetMetaData) result.getMetaData();
 			int columnsNumber = rsmd.getColumnCount();
-			int index=1;
 			while (result.next()) { // row wise iterate 
 				Map<Object,Object> map = new HashMap<Object,Object>(10);
 			    for (int i = 1; i <= columnsNumber; i++) {
 			        String columnValue = result.getString(i);
 			        map.put(rsmd.getColumnLabel(i), columnValue);
 			    }
-			    map2.put(index,map); // map of map for avoiding key duplication
-			    index++;
+			    map2.put(map.get("EMPLOYEE_ID"),map); // map of map for avoiding key duplication
 			}
 		}catch(Exception e) {
 			throw new KeyException("Cannot change Result set to Map"+e);
